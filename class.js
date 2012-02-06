@@ -75,6 +75,6 @@ THE SOFTWARE. */
   
   // Expose Class as an AMD module
   if (typeof define === 'function' && define.amd) {
-    define("class", [], function() { return Class; });
+    define([], function() { return Class; });
   }
 })(window);
