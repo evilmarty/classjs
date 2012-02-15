@@ -2,31 +2,52 @@
 <html>
 <head>
   <meta charset='utf-8'>
-
-  <title>evilmarty/classjs @ GitHub</title>
-
+  <title>class.js</title>
+  <link href='http://fonts.googleapis.com/css?family=Parisienne|Alegreya' rel='stylesheet' type='text/css'>
   <style type="text/css">
     body {
       margin-top: 1.0em;
-      background-color: #64463a;
-      font-family: Helvetica, Arial, FreeSans, san-serif;
-      color: #ffffff;
+      background: white;
+      font-family: 'Alegreya', 'New Times Roman', serif;
+      color: #222;
     }
-    #container {
-      margin: 0 auto;
-      width: 700px;
+    h1 {
+      font: 3.8em 'Parisienne', cursive;
+      margin-bottom: 3px;
     }
-    h1 { font-size: 3.8em; color: #9bb9c5; margin-bottom: 3px; }
     h1 .small { font-size: 0.4em; }
     h1 a { text-decoration: none }
-    h2 { font-size: 1.5em; color: #9bb9c5; }
-    h3 { text-align: center; color: #9bb9c5; }
-    a { color: #9bb9c5; }
+    h2 { font-size: 1.5em; }
+    h3 { text-align: center; }
+    a {
+      color: black;
+      text-shadow: #ccc 2px 2px 0;
+      -webkit-transition: text-shadow 300ms;
+      -moz-transition: text-shadow 300ms;
+      -o-transition: text-shadow 300ms;
+      transition: text-shadow 300ms;
+    }
+    a:hover {
+      text-shadow: none;
+    }
     .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
     .download { float: right; }
     pre { background: #000; color: #fff; padding: 15px;}
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     .footer { text-align:center; padding-top:30px; font-style: italic; }
+    #container {
+      margin: 0 auto;
+      width: 700px;
+    }
+    #header {
+      background: url("sir.png") no-repeat;
+      margin-bottom: 50px;
+      padding: 100px 0 60px 404px;
+    }
+    #header h1 span.small {
+      display: block;
+      font-family: 'Alegreya', 'New Times Roman', serif;
+    }
   </style>
 </head>
 
@@ -34,52 +55,48 @@
   <a href="https://github.com/evilmarty/classjs"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
 
   <div id="container">
-
-    <div class="download">
-      <a href="https://github.com/evilmarty/classjs/zipball/master">
-        <img border="0" width="90" src="https://github.com/images/modules/download/zip.png"></a>
-      <a href="https://github.com/evilmarty/classjs/tarball/master">
-        <img border="0" width="90" src="https://github.com/images/modules/download/tar.png"></a>
+    <div id="header">
+      <h1>
+        <a href="https://github.com/evilmarty/classjs">class.js</a>
+        <span class="small">
+          by <a href="https://github.com/evilmarty">Marty Zalega</a>
+        </span>
+      </h1>
+      <div class="description">
+        A nifty utility to craft javascript objects as a sir.
+      </div>
     </div>
+    
+    <p>Creating a class is as simple as sipping on a glass of whisky:</p>
+    
+    <pre>var Gentleman = Class({
+  initialize: function() {
+    alert("splendid!");
+  }
+})</pre>
 
-    <h1><a href="https://github.com/evilmarty/classjs">classjs</a>
-      <span class="small">by <a href="https://github.com/evilmarty">evilmarty</a></span></h1>
+    <p>Then using your newly crafted class is just like taking another sip:</p>
+    
+    <pre>var sir = new Gentleman()</pre>
 
-    <div class="description">
-      A nifty utility to craft javascript objects as a gentleman.
-    </div>
-
+    <p>Sub-classing is the same as tipping your hat:</p>
     
-      <p>class.js</p>
-    
-
-    
-
-    
-      <h2>Install</h2>
-      <p>Include the file in your page or paste into your library file.</p>
-    
-
-    
-      <h2>License</h2>
-      <p>Under the MIT license.</p>
-    
-
-    
-      <h2>Authors</h2>
-      <p>Marty Zalega (evil.marty@gmail.com)<br/>      </p>
-    
-
-    
-      <h2>Contact</h2>
-      <p>Marty Zalega (evil.marty@gmail.com)<br/>      </p>
-    
+    <pre>var ClassyGentleman = Gentleman({
+  yes: function() {
+    alert('quite');
+  }
+})</pre>
+  
+    <h2>Install</h2>
+    <p>Include the file in your page or paste into your library file.</p>
+  
+    <h2>License</h2>
+    <p>Under the MIT license.</p>
 
     <h2>Download</h2>
     <p>
-      You can download this project in either
-      <a href="https://github.com/evilmarty/classjs/zipball/master">zip</a> or
-      <a href="https://github.com/evilmarty/classjs/tarball/master">tar formats.
+      <a href="https://raw.github.com/evilmarty/classjs/master/class.js">uncompressed</a> or
+      <a href="https://raw.github.com/evilmarty/classjs/master/class.min.js">compressed</a>
     </p>
     <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
       by running:
