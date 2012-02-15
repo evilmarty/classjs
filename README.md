@@ -9,12 +9,21 @@ A simply (self-contained) javascript library to create and extend classes.
 * Define classes
 * Class inheritence
 * Accessors for super classes
+* Easily extend classes and objects
 
 ## Syntax
 
-### extend([instance properties], [class properties]) _class_
+### Class([instance properties], [class properties]) _class_
 
 Extend the current class with the given instance and class properties, returning a new class object.
+
+### extend([class properties]) _class_
+
+Extend the current class with the given class properties, returning the current class.
+
+### include([instance properties]) _class_
+
+Extend the current class with the given instance properties, returning the current class.
 
 ### superClass _class_
 
@@ -27,7 +36,7 @@ Accessor to the parent classs instance. Helpful when overriding methods and need
 ## Usage
   
   ```
-  var Post = Class.extend({
+  var Post = Class({
     initialize: function(msg) {
       this.msg = msg;
     },
@@ -40,12 +49,14 @@ Accessor to the parent classs instance. Helpful when overriding methods and need
     }
   });
   ```
+
 ## Changelog
 
+* 0.2 - Added support for easily extending a class and its instance
 * 0.1.1 - Fixed issue with AMD
 * 0.1 - Big bang!
 
 
 ## TODO
 
-+ Add support for extensions and inclusions
++ Wider browser and environment testing

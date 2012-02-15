@@ -12,11 +12,17 @@ describe("Class", function() {
   });
   it("should be a blank object when instantiated", function() {
     expect(new Class()).toEqual({});
-  })
+  });
+  it("should extend the class", function() {
+    Class.extend({
+      baseExtendTest: true
+    });
+    expect(Class.baseExtendTest).toEqual(true);
+  });
   describe("creating a new class", function() {
-    var NewClass;
+    var A;
     beforeEach(function() {
-      NewClass = Class.extend({
+      A = Class({
         definedTest: true,
         protoTest: '1'
       }, {
@@ -25,30 +31,42 @@ describe("Class", function() {
       });
     });
     it("should set the super class to Class", function() {
-      expect(NewClass.superClass).toBe(Class);
+      expect(A.superClass).toBe(Class);
     });
     it("should have defined class method", function() {
-      expect(NewClass.definedTest).toBeDefined();
+      expect(A.definedTest).toBeDefined();
+    });
+    it("should extend the class", function() {
+      A.extend({
+        extendTestA: true
+      });
+      expect(A.extendTestA).toEqual(true);
+    });
+    it("should include the extension on the instance", function() {
+      A.include({
+        includeTestA: true
+      });
+      expect(new A().includeTestA).toEqual(true);
     });
     describe("instantiating", function() {
-      var newObject;
+      var a;
       beforeEach(function() {
-        newObject = new NewClass();
+        a = new A();
       });
       it("should be an instance of the new class", function() {
-        expect(newObject).toBeAnInstanceOf(NewClass);
+        expect(a).toBeAnInstanceOf(A);
       });
       it("should be an instance of the base class", function() {
-        expect(newObject).toBeAnInstanceOf(Class);
+        expect(a).toBeAnInstanceOf(Class);
       });
       it("should have defined instance method", function() {
-        expect(newObject.definedTest).toBeDefined();
+        expect(a.definedTest).toBeDefined();
       });
     });
     describe("extending", function() {
-      var ExtendedClass;
+      var B;
       beforeEach(function() {
-        ExtendedClass = NewClass.extend({
+        B = A({
           protoTest: '2',
           extendedDefinedTest: true
         }, {
@@ -57,33 +75,45 @@ describe("Class", function() {
         });
       });
       it("should set the super class to NewClass", function() {
-        expect(ExtendedClass.superClass).toBe(NewClass);
+        expect(B.superClass).toBe(A);
       });
       it("should have defined class method", function() {
-        expect(NewClass.extendedDefinedTest).not.toBeDefined();
-        expect(ExtendedClass.extendedDefinedTest).toBeDefined();
+        expect(A.extendedDefinedTest).not.toBeDefined();
+        expect(B.extendedDefinedTest).toBeDefined();
       });
       it("should override the class method if the super class has defined a method of the same name", function() {
-        expect(NewClass.staticTest).toEqual('1');
-        expect(ExtendedClass.staticTest).toEqual('2');
+        expect(A.staticTest).toEqual('1');
+        expect(B.staticTest).toEqual('2');
+      });
+      it("should extend the class", function() {
+        B.extend({
+          extendTestB: true
+        });
+        expect(B.extendTestB).toEqual(true);
+      });
+      it("should include the extension on the instance", function() {
+        B.include({
+          includeTestB: true
+        });
+        expect(new B().includeTestB).toEqual(true);
       });
       describe("instantiating", function() {
-        var extendedObject;
+        var b;
         beforeEach(function() {
-          extendedObject = new ExtendedClass();
+          b = new B();
         });
         it("should be an instance of the extended class", function() {
-          expect(extendedObject).toBeAnInstanceOf(ExtendedClass);
+          expect(b).toBeAnInstanceOf(B);
         });
         it("should be an instance of the new class", function() {
-          expect(extendedObject).toBeAnInstanceOf(NewClass);
+          expect(b).toBeAnInstanceOf(A);
         });
         it("should be an instance of the base class", function() {
-          expect(extendedObject).toBeAnInstanceOf(Class);
+          expect(b).toBeAnInstanceOf(Class);
         });
         it("should have defined instance method", function() {
-          expect(extendedObject.definedTest).toBeDefined();
-          expect(extendedObject.extendedDefinedTest).toBeDefined();
+          expect(b.definedTest).toBeDefined();
+          expect(b.extendedDefinedTest).toBeDefined();
         });
       });
     });
